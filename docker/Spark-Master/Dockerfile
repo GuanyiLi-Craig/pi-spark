@@ -1,0 +1,9 @@
+FROM spark-base:latest
+
+ENV SPARK_MASTER_PORT 7077
+ENV SPARK_MASTER_WEBUI_PORT 8080
+ENV SPARK_MASTER_LOG ${SPARK_HOME}/logs
+
+EXPOSE 8080
+
+ENTRYPOINT $SPARK_HOME/bin/spark-class org.apache.spark.deploy.master.Master

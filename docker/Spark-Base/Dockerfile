@@ -1,0 +1,26 @@
+# This base image comes shipped with java 8 (needed for scala)
+FROM debian
+
+# Set env variables
+ENV DAEMON_RUN=true
+ENV SPARK_VERSION=3.2.1
+ENV HADOOP_VERSION=3.2
+ENV SPARK_HOME_BASE=/usr/local
+ENV SPARK_OPTS --driver-java-options=-Xms1024M --driver-java-options=-Xmx2048M --driver-java-options=-Dlog4j.logLevel=info
+
+RUN apt update
+RUN apt upgrade -y
+# Install Scala
+RUN apt install -y wget default-jre default-jdk scala
+    
+# Get Apache Spark  https://dlcdn.apache.org/spark/spark-3.2.1/spark-3.2.1-bin-hadoop3.2.tgz
+RUN wget https://dlcdn.apache.org/spark/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz
+
+# Install Spark and move it to the folder "/spark" and then add this location to the PATH env variable
+RUN tar -xzf spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz && \
+    mv spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION} /usr/local && \
+    rm spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz
+
+ENV SPARK_HOME=$SPARK_HOME_BASE/spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}
+ENV PATH=$SPARK_HOME/bin:$PATH
+ENV PATH=$SPARK_HOME/sbin:$PATH
