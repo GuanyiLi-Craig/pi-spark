@@ -1,7 +1,5 @@
 FROM guanyili/spark-base:pi-0.0.1
 
-# replace spark master to hostname
-ENV MASTER_CONTAINER_NAME=172.17.0.2
 ENV CORES=2
 ENV MEMORY=2G
 ENV SPARK_WORKER_WEBUI_PORT 8081
