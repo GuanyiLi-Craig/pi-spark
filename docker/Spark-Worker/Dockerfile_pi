@@ -1,4 +1,4 @@
-FROM guanyili/spark-base:pi-0.0.1
+FROM guanyili/spark-base-pi:latest
 
 ENV CORES=2
 ENV MEMORY=2G
