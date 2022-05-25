@@ -1,0 +1,12 @@
+version: '3.5'
+
+services:
+  spark-master:
+    image: guanyili/spark-master-pi
+    container_name: spark-master
+    ports:
+      - "7077:7077"
+      - "8080:8080"
+    restart: unless-stopped
+    volumes:
+      - /data/spark/workspace:/opt/workspace
