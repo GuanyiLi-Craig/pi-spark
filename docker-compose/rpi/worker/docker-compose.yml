@@ -5,6 +5,7 @@ services:
     image: guanyili/spark-worker-pi
     container_name: spark-worker-1
     environment:
+      - MASTER_CONTAINER_NAME=<master IP>
       - SPARK_WORKER_CORES=1
       - SPARK_WORKER_MEMORY=512m
     ports:
