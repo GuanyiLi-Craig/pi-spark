@@ -11,7 +11,7 @@ ENV SPARK_OPTS --driver-java-options=-Xms1024M --driver-java-options=-Xmx2048M -
 RUN apt update
 RUN apt upgrade -y
 # Install Scala
-RUN apt install -y wget default-jre default-jdk scala
+RUN apt install -y wget default-jre default-jdk scala python3
     
 # Get Apache Spark  https://dlcdn.apache.org/spark/spark-3.2.1/spark-3.2.1-bin-hadoop3.2.tgz
 RUN wget https://dlcdn.apache.org/spark/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz
